@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx-2.5.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <import resource="applicationContext-dataSource-dev.xml"/>
+    <import resource="applicationContext-dataSource-prod.xml"/>
+
+    <context:annotation-config/>
+
+    <tx:annotation-driven/>
+    <!-- For understand JPA annotations such as @Transactional -->
+
+    <context:component-scan base-package="org.persac"/>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"
+          scope="session">
+        <aop:scoped-proxy proxy-target-class="false"/>
+
+        <property name="dataSource" ref="dataSource"/>
+        <property name="annotatedClasses">
+            <list>
+                <value>org.persac.persistence.model.Item</value>
+                <value>org.persac.persistence.model.Income</value>
+                <value>org.persac.persistence.model.Outcome</value>
+
+                <value>org.persac.persistence.model.Category</value>
+                <value>org.persac.persistence.model.IncomeCategory</value>
+                <value>org.persac.persistence.model.OutcomeCategory</value>
+
+                <value>org.persac.persistence.model.Week</value>
+
+                <value>org.persac.persistence.model.Month</value>
+                <value>org.persac.persistence.model.MonthRecord</value>
+                <value>org.persac.persistence.model.MonthIncome</value>
+                <value>org.persac.persistence.model.MonthOutcome</value>
+
+                <value>org.persac.persistence.model.User</value>
+                <value>org.persac.persistence.model.Role</value>
+                <value>org.persac.persistence.model.UserRole</value>
+
+                <value>org.persac.persistence.model.Asset</value>
+                <value>org.persac.persistence.model.AssetType</value>
+
+                <value>org.persac.persistence.model.CurrencyAsset</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+                hibernate.show_sql=true
+                hibernate.use_sql_comments=true
+                hibernate.hbm2ddl.auto=update
+            </value>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="userDetails" class="org.persac.persistence.model.UserDetailsImpl" scope="session">
+        <aop:scoped-proxy proxy-target-class="false"/>
+    </bean>
+
+    <!-- DAO layer -->
+    <bean id="itemDao" class="org.persac.persistence.dao.impl.ItemDaoImpl"
+          p:sessionFactory-ref="sessionFactory"
+          p:userDetails-ref="userDetails"/>
+
+    <bean id="categoryDao" class="org.persac.persistence.dao.impl.CategoryDaoImpl"
+          p:sessionFactory-ref="sessionFactory"/>
+
+    <bean id="weekDao" class="org.persac.persistence.dao.impl.WeekDaoImpl"
+          p:sessionFactory-ref="sessionFactory"
+          p:userDetails-ref="userDetails"/>
+
+    <bean id="monthDao" class="org.persac.persistence.dao.impl.MonthDaoImpl"
+          p:sessionFactory-ref="sessionFactory"
+          p:userDetails-ref="userDetails"/>
+
+    <bean id="userDao" class="org.persac.persistence.dao.impl.UserDaoImpl"
+          c:sessionFactory-ref="sessionFactory"/>
+
+    <bean id="assetDao" class="org.persac.persistence.dao.impl.AssetDaoImpl"
+          p:sessionFactory-ref="sessionFactory"
+          p:userDetails-ref="userDetails"/>
+
+    <bean id="assetTypeDao" class="org.persac.persistence.dao.impl.AssetTypeDaoImpl"
+          p:sessionFactory-ref="sessionFactory"
+          p:userDetails-ref="userDetails"/>
+
+    <bean id="roleDao" class="org.persac.persistence.dao.impl.RoleDaoImpl"
+          p:sessionFactory-ref="sessionFactory"/>
+
+</beans>

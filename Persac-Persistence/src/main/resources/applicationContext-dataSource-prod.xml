@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       profile="prod">
+
+    <!-- TODO: change credentials for our prod DB -->
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close"
+          p:driverClassName="com.mysql.jdbc.Driver"
+          p:url="jdbc:mysql://***.***.***.***:3306/db_name?useUnicode=true&amp;characterEncoding=utf8"
+
+          p:username="username"
+          p:password="password"
+          p:testWhileIdle="true"
+          p:validationQuery="SELECT 1"/>
+
+</beans>

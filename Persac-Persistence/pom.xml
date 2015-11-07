@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <artifactId>Persac</artifactId>
+        <groupId>org.persac</groupId>
+        <version>3.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>Persac-Persistence</artifactId>
+    <packaging>jar</packaging>
+    <modelVersion>4.0.0</modelVersion>
+
+    <dependencies>
+        <!-- System scope it's not good idea.
+         Cause it will be not included into final package if e. g. package and run on Tomcat -->
+        <!--<dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc6</artifactId>
+            <version>11.2.0.4</version>
+            <scope>system</scope>
+            <systemPath>../lib/ojdbc6-11.2.0.4.jar</systemPath>
+        </dependency>-->
+    </dependencies>
+</project>

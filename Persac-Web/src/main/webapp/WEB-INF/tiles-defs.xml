@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+    <definition name="layout" template="/jsp/layout/layout.jsp">
+        <put-attribute name="title" value=""/>
+        <put-attribute name="header" value="/jsp/layout/header.jsp"/>
+        <put-attribute name="body" value=""/>
+    </definition>
+
+    <definition name="index" extends="layout">
+        <put-attribute name="title" value="Personal Accounting"/>
+        <put-attribute name="body" value="/jsp/index.jsp"/>
+    </definition>
+
+    <definition name="daily" extends="layout">
+        <put-attribute name="title" value="Daily - Personal Accounting"/>
+        <put-attribute name="body" value="/jsp/daily.jsp"/>
+    </definition>
+
+    <definition name="monthly" extends="layout">
+        <put-attribute name="title" value="Monthly - Personal Accounting"/>
+        <put-attribute name="body" value="/jsp/monthly.jsp"/>
+    </definition>
+
+    <definition name="weekly" extends="layout">
+        <put-attribute name="title" value="Weekly - Personal Accounting"/>
+        <put-attribute name="body" value="/jsp/weekly.jsp"/>
+    </definition>
+
+    <definition name="assets" extends="layout">
+        <put-attribute name="title" value="Assets - Personal Accounting"/>
+        <put-attribute name="body" value="/jsp/assets.jsp"/>
+    </definition>
+
+    <definition name="settings" extends="layout">
+        <put-attribute name="title" value="Settings - Personal Accounting"/>
+        <put-attribute name="body" value="/jsp/settings.jsp"/>
+    </definition>
+
+    <definition name="welcome" template="/jsp/welcome.jsp">
+        <put-attribute name="title" value="Welcome - Personal Accounting"/>
+    </definition>
+</tiles-definitions>

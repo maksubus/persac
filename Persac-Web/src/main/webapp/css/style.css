@@ -1,0 +1,43 @@
+#persac-nav-bar {
+    margin-bottom: 10px !important;
+    margin-top: 10px;
+}
+
+#persac-logo {
+    display: inline;
+}
+
+#language-select,#locale {
+    float: right;
+    height: 30px;
+}
+
+td {
+    font-size: 12px !important;
+}
+
+.edit-item, .delete-item {
+    cursor: pointer;
+}
+
+.td-item {
+    width: 46%;
+}
+
+.total-for-day {
+    height: 15px;
+    float: left;
+    margin-bottom: 0;
+}
+
+.element-right {
+    float: right;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.record-row-block {
+    min-height: 25px;
+}
+
+
